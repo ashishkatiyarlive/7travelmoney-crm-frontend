@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { SharedModule } from 'primeng/api';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { CommonModule } from '@angular/common';
     AppRoutingModule,
     CommonModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    SharedModule
   ],
   providers: [],
   bootstrap: [AppComponent]

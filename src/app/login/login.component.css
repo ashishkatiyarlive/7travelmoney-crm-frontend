@@ -1,0 +1,10 @@
+.login-logo{
+    width: 220px;
+    border-radius: 50% 50%;
+    border: solid 1px #dee2e6;
+    height: 220px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    margin-bottom: 24px;
+}
