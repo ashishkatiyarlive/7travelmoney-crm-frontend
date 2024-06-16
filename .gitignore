@@ -133,3 +133,4 @@ dist
 .angular/
 .angular/*
 .pack
+/log

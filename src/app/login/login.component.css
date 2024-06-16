@@ -8,3 +8,6 @@
     display: flex;
     margin-bottom: 24px;
 }
+.login{
+    cursor: pointer;
+}

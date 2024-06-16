@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { PrimeIcons } from 'primeng/api';
 
 @Component({
   selector: 'app-user-dashboard',

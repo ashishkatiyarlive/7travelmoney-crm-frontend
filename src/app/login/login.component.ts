@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 //import Validation from './utils/validation';
 
 @Component({
@@ -10,15 +11,10 @@ import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from
 export class LoginComponent implements OnInit {
   // loginForm!: FormGroup;
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder, private router: Router) {
     
   }
-  // ngOnInit(){
-  //   this.loginForm = this.formBuilder.group({
-  //     email: ['', [Validators.required, Validators.email]],
-  //     password: ['', Validators.required]
-  //   });
-  // }
+  
 
   onSubmit() {
     if (this.loginForm.valid) {
@@ -45,5 +41,8 @@ export class LoginComponent implements OnInit {
   }
   get f(): { [key: string]: AbstractControl } {
     return this.loginForm.controls;
+  }
+  login(){
+    this.router.navigate(['/user-dashboard']);
   }
 }
