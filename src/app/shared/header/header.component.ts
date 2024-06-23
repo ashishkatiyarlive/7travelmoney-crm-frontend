@@ -7,10 +7,13 @@ import { Router } from '@angular/router';
   styleUrl: './header.component.css'
 })
 export class HeaderComponent {
+  isShownavbar: boolean = false
   constructor( private router: Router){
-
   }
   logout(){
     this.router.navigate(['/login']);
+  }
+  shownavbar(){
+    this.isShownavbar = !this.isShownavbar;
   }
 }
