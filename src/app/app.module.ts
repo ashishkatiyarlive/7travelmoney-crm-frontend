@@ -15,6 +15,7 @@ import { UserListingComponent } from './user-listing/user-listing.component';
 // import { UserListingService } from './user-listing/user-listing.service';
 import { ProductService } from './services/productservice';
 import { NewProductService } from './services/newProductservice';
+import { UserService } from './services/user.service';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,7 @@ import { NewProductService } from './services/newProductservice';
     FormsModule,
     SharedModule
   ],
-  providers: [ProductService, NewProductService],
+  providers: [ProductService, NewProductService, UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

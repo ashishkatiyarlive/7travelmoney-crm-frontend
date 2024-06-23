@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { Product } from './../utilities/product'
-import { ProductService } from '../services/productservice';
+import { UserService } from '../services/user.service';
 
 interface Column {
     field: string;
@@ -15,23 +14,24 @@ interface Column {
 })
 export class UserListingComponent {
 
-  products!: Product[];
-
+    users!: any;
     cols!: Column[];
 
-    constructor(private productService: ProductService) {}
+    constructor(private userService: UserService) {}
 
     ngOnInit() {
-        this.productService.getProductsMini().then((data) => {
-            this.products = data;
-        });
+        this.userService.getUsers().subscribe(data => {
+            if (data) {
+              this.users = data;
+            }
+          });
 
         this.cols = [
-            { field: 'code', header: 'Code' },
-            { field: 'name', header: 'Name' },
-            { field: 'category', header: 'Category' },
-            { field: 'quantity', header: 'Quantity' }
-            // { field: '', header: 'Status'}
+            {field: 'name', header: 'Name'},
+            {field: 'email', header: 'Email'},
+            {field: 'phone', header: 'Phone'},
+            {field: 'status', header: 'Status'},
+            {field: 'created_at', header: 'Created Date'}
         ];
     }
 

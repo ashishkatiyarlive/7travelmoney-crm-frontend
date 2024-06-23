@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { Product } from './../utilities/product'
-import { ProductService } from '../services/productservice';
+import { CurrencyService } from '../services/currency.service';
 
 interface Column {
     field: string;
@@ -13,22 +12,25 @@ interface Column {
   styleUrl: './currency-listing.component.css'
 })
 export class CurrencyListingComponent {
-  products!: Product[];
+  currencies!: any;
 
     cols!: Column[];
 
-    constructor(private productService: ProductService) {}
+    constructor(private currencyService: CurrencyService) {}
 
     ngOnInit() {
-        this.productService.getProductsMini().then((data) => {
-            this.products = data;
-        });
+        this.currencyService.getCurrencies().subscribe(data => {
+            if (data) {
+              this.currencies = data;
+            }
+          });
 
         this.cols = [
-            { field: 'code', header: 'Code' },
+            { field: 'symbol', header: 'Symbol' },
             { field: 'name', header: 'Name' },
-            { field: 'category', header: 'Category' },
-            { field: 'quantity', header: 'Quantity' }
+            { field: 'rate', header: 'Buy Rate' },
+            { field: 'status', header: 'Status' },
+            { field: 'updated_at', header: 'Updated Date' }
         ];
     }
     

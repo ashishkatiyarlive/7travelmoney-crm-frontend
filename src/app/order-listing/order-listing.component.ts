@@ -1,36 +1,39 @@
 import { Component } from '@angular/core';
-import { Product } from './../utilities/product'
-import { ProductService } from '../services/productservice';
+import { OrderService } from '../services/order.service';
 
 interface Column {
     field: string;
     header: string;
 }
 
-
 @Component({
-  selector: 'app-order-listing',
-  templateUrl: './order-listing.component.html',
-  styleUrl: './order-listing.component.css'
+    selector: 'app-order-listing',
+    templateUrl: './order-listing.component.html',
+    styleUrl: './order-listing.component.css'
 })
 export class OrderListingComponent {
 
-  products!: Product[];
-
+    orders!: any;
     cols!: Column[];
 
-    constructor(private productService: ProductService) {}
+    constructor(private orderService: OrderService) { }
 
     ngOnInit() {
-        this.productService.getProductsMini().then((data) => {
-            this.products = data;
+        this.orderService.getOrders().subscribe(data => {
+            if (data) {
+                this.orders = data;
+            }
         });
 
         this.cols = [
-            { field: 'code', header: 'Code' },
-            { field: 'name', header: 'Name' },
-            { field: 'category', header: 'Category' },
-            { field: 'quantity', header: 'Quantity' }
+            { field: 'user_id', header: 'User' },
+            { field: 'currency_id', header: 'Currency' },
+            { field: 'rate', header: 'Buy Rate' },
+            { field: 'quantity', header: 'Quantity' },
+            { field: 'total_amount', header: 'Total Amount' },
+            { field: 'booking_date', header: 'Booking Date' },
+            { field: 'expiry_date', header: 'Expiry Date' },
+            { field: 'status', header: 'Status' }
         ];
     }
 

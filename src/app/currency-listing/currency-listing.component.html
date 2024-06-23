@@ -7,14 +7,14 @@
 <div class="row">
 <div class="col-12">
     <div class="card">
-        <p-table [columns]="cols" [value]="products">
+        <p-table [columns]="cols" [value]="currencies">
             <ng-template pTemplate="header" let-columns>
                 <tr>
                     <th *ngFor="let col of columns">
                         {{ col.header }}
                     </th>
                     <th>
-                        Status
+                        Actions
                     </th>
                 </tr>
             </ng-template>

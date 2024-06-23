@@ -1,19 +1,19 @@
 <div class="row">
     <div class="col-12">
-        <h4 class="bg-light px-3 py-2 fw-normal">Users Listing</h4>
+        <h4 class="bg-light px-3 py-2 fw-normal">Users</h4>
     </div>
 </div>
 <div class="row">
 <div class="col-12">
     <div class="card">
-        <p-table [columns]="cols" [value]="products">
+        <p-table [columns]="cols" [value]="users">
             <ng-template pTemplate="header" let-columns>
                 <tr>
                     <th *ngFor="let col of columns">
                         {{ col.header }}
                     </th>
                     <th>
-                        Status
+                        Actions
                     </th>
                 </tr>
             </ng-template>

@@ -107,6 +107,7 @@ import { AccordionModule } from 'primeng/accordion';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { NewProductService } from '../services/newProductservice';
+import { DatePipe } from '@angular/common';
 
     
 
@@ -328,7 +329,7 @@ import { NewProductService } from '../services/newProductservice';
     HeaderComponent,
     FooterComponent
   ],
-  providers: [ ProductService, NewProductService ],
+  providers: [ ProductService, NewProductService, DatePipe ],
   declarations: [
     HeaderComponent,
     FooterComponent

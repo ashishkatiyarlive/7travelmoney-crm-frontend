@@ -8,8 +8,9 @@ import { OrderListingComponent } from './order-listing/order-listing.component';
 import { AddUserComponent } from './add-user/add-user.component';
 
 const routes: Routes = [
+  {path:'', pathMatch: 'full', redirectTo: 'login'},
   {path: 'login', component: LoginComponent},
-  {path: 'user-dashboard', component: UserDashboardComponent},
+  {path: 'dashboard', component: UserDashboardComponent},
   {path:'user-listing', component: UserListingComponent},
   {path: 'currency-listing', component: CurrencyListingComponent},
   {path: 'order-listing', component: OrderListingComponent},
