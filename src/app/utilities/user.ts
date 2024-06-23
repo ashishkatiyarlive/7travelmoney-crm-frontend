@@ -7,4 +7,6 @@ export interface User{
     userAddress?: string;
     userEmail?: string;
     userPhone?: string;
+    city?: string;
+    state?: string;
 }

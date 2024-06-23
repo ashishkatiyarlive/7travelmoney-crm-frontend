@@ -1,1 +1,78 @@
-<p>add-user works!</p>
+<div class="container-fluid">
+<app-header></app-header>
+<div class="row mt-4">
+    <div class="col-12">
+        <h4 class="bg-light px-3 py-2 fw-normal">Add User</h4>
+    </div>
+</div>
+<div class="row">
+<div class="col-12 p-4">
+<form class="card p-4" [formGroup]="addUser" (ngSubmit)="submitUserForm()" >
+    <div class="row g-6">
+        <div class="col-md-6 col-xs-12 mb-2">
+          <label class="form-label"> User Name</label>
+          <input type="text" class="form-control" formControlName="userName" maxlength="50" placeholder="User name" aria-label="User name">
+          <span *ngIf="(this.userData['userName'].touched || submitted) && this.userData['userName'].errors?.['required']" class="error">
+            User name is required.
+          </span>
+        </div>
+        <div class="col-md-6 col-xs-12 mb-2">
+            <label class="form-label">Password</label>
+          <input type="text" class="form-control" maxlength="30" formControlName="password" placeholder="Password" aria-label="password">
+          <span *ngIf="(this.userData['password'].touched || submitted) && this.userData['password'].errors?.['required']" class="error">
+            Password is required.
+          </span>
+        </div>
+      </div>
+      <div class="row g-6">
+        <div class="col-md-6 col-xs-12 mb-2">
+            <label class="form-label">Email</label>
+            <input type="email" class="form-control" maxlength="50" formControlName="email" placeholder="Email" aria-label="email">
+            <span *ngIf="(this.userData['email'].touched || submitted) && this.userData['email'].errors?.['required']" class="error">
+                Email is required.
+              </span>
+        </div>
+        <div class="col-md-6 col-xs-12 mb-2">
+            <label class="form-label">Mobile</label>
+            <input type="tel" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" class="form-control" maxlength="10" formControlName="mobile" placeholder="Mobile no" aria-label="mobile no">
+            <span *ngIf="(this.userData['mobile'].touched || submitted) && this.userData['mobile'].errors?.['required']" class="error">
+                Mobile No is required.
+            </span>
+        </div> 
+       </div>
+       <div class="row g-6">
+        <div class="col-md-6 col-xs-12 mb-2">
+            <label class="form-label">City</label>
+            <input type="text" class="form-control" formControlName="city" maxlength="50" placeholder="city" aria-label="city">
+            <span *ngIf="(this.userData['city'].touched || submitted) && this.userData['city'].errors?.['required']" class="error">
+                City is required.
+            </span>
+        </div>
+        <div class="col-md-6 col-xs-12 mb-2">
+            <label class="form-label">State</label>
+            <input type="text" class="form-control" formControlName="state" maxlength="50"  placeholder="State" aria-label="State">
+            <span *ngIf="(this.userData['state'].touched || submitted) && this.userData['state'].errors?.['required']" class="error">
+                State is required.
+            </span>
+        </div>
+       </div>
+       <div class="row">
+        <div class="col-md-6 col-xs-12 mb-2">
+            <label class="form-label"> Address</label>
+            <input type="text" class="form-control" formControlName="address"  maxlength="80" placeholder="Address" aria-label="address">
+            <span *ngIf="(this.userData['address'].touched || submitted) && this.userData['address'].errors?.['required']" class="error">
+                Address is required.
+            </span>
+        </div>
+       </div>
+       <div class="row g-6 my-4">
+         <div class="col text-center"> 
+            <button type="submit" class="btn btn-primary me-2">submit</button>
+            <button type="button" class="btn btn-secondary">Reset</button>
+         </div>
+       </div>
+</form>
+</div>
+</div>
+<app-footer></app-footer>
+</div>
