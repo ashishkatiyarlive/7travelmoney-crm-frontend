@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { CurrencyService } from '../services/currency.service';
+import { DatePipe } from '@angular/common';
 
 interface Column {
     field: string;
@@ -16,11 +17,15 @@ export class CurrencyListingComponent {
 
     cols!: Column[];
 
-    constructor(private currencyService: CurrencyService) {}
+    constructor(private currencyService: CurrencyService, private datePipe: DatePipe) {}
 
     ngOnInit() {
         this.currencyService.getCurrencies().subscribe(data => {
             if (data) {
+                data.map((value: any) => {
+                    value.updatedDate = this.datePipe.transform(value.updated_at, 'dd/MM/yyyy, HH:MM');
+                    return value;
+                })
               this.currencies = data;
             }
           });
@@ -30,7 +35,7 @@ export class CurrencyListingComponent {
             { field: 'name', header: 'Name' },
             { field: 'rate', header: 'Buy Rate' },
             { field: 'status', header: 'Status' },
-            { field: 'updated_at', header: 'Updated Date' }
+            { field: 'updatedDate', header: 'Updated Date' }
         ];
     }
     

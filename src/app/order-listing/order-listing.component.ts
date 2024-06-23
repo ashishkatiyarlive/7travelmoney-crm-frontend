@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { OrderService } from '../services/order.service';
+import { DatePipe } from '@angular/common';
 
 interface Column {
     field: string;
@@ -16,24 +17,41 @@ export class OrderListingComponent {
     orders!: any;
     cols!: Column[];
 
-    constructor(private orderService: OrderService) { }
+    constructor(private orderService: OrderService, private datePipe: DatePipe) { }
 
     ngOnInit() {
         this.orderService.getOrders().subscribe(data => {
             if (data) {
+                data.map((value: any) => {
+                    value.currencyName = value.currencies.name;
+                    value.userName = value.user.name;
+                    value.rates = `₹${value.rate}`;
+                    value.totalAmount = `₹${value.total_amount}`;
+                    value.quantityWithSymbol = value.currencies.symbol + value.quantity;
+                    value.bookingDate = this.datePipe.transform(value.booking_date, 'dd/MM/yyyy, HH:MM');
+                    value.expiryDate = this.datePipe.transform(value.expiry_date, 'dd/MM/yyyy, HH:MM');
+                    if(value.status === 1) {
+                        value.statusName = 'In-Progress';
+                    } else if (value.status === 2) {
+                        value.statusName = 'Hold';
+                    } else {
+                        value.statusName = 'Completed';
+                    }
+                    return value;
+                })
                 this.orders = data;
             }
         });
 
         this.cols = [
-            { field: 'user_id', header: 'User' },
-            { field: 'currency_id', header: 'Currency' },
-            { field: 'rate', header: 'Buy Rate' },
-            { field: 'quantity', header: 'Quantity' },
-            { field: 'total_amount', header: 'Total Amount' },
-            { field: 'booking_date', header: 'Booking Date' },
-            { field: 'expiry_date', header: 'Expiry Date' },
-            { field: 'status', header: 'Status' }
+            { field: 'userName', header: 'User' },
+            { field: 'currencyName', header: 'Currency' },
+            { field: 'quantityWithSymbol', header: 'Quantity' },
+            { field: 'rates', header: 'Buy Rate' },
+            { field: 'totalAmount', header: 'Total Amount' },
+            { field: 'bookingDate', header: 'Booking Date' },
+            { field: 'expiryDate', header: 'Expiry Date' },
+            { field: 'statusName', header: 'Status' }
         ];
     }
 
