@@ -14,7 +14,7 @@ export class HeaderComponent implements OnInit {
   userInfo: any;
   isShownavbar: boolean = false
   constructor( private router: Router, private datePipe: DatePipe, private userService: UserService, private authService: AuthService){
-    this.currentDate = this.datePipe.transform(new Date(), 'E, dd MMM yyyy');
+    this.currentDate = this.datePipe.transform(new Date(), 'E, dd MMM yyyy, HH:MM');
   }
 
   ngOnInit(): void {
