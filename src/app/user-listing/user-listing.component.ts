@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { UserService } from '../services/user.service';
+import { DatePipe } from '@angular/common';
+import { findIndex } from 'rxjs';
 
 interface Column {
     field: string;
@@ -17,11 +19,15 @@ export class UserListingComponent {
     users!: any;
     cols!: Column[];
 
-    constructor(private userService: UserService) {}
+    constructor(private userService: UserService, private datePipe: DatePipe) {}
 
     ngOnInit() {
         this.userService.getUsers().subscribe(data => {
             if (data) {
+                data.map((value: any) => {
+                    value.createdDate = this.datePipe.transform(value.created_at, 'dd/MM/yyyy, HH:MM');
+                    return value;
+                })
               this.users = data;
             }
           });
@@ -31,7 +37,7 @@ export class UserListingComponent {
             {field: 'email', header: 'Email'},
             {field: 'phone', header: 'Phone'},
             {field: 'status', header: 'Status'},
-            {field: 'created_at', header: 'Created Date'}
+            {field: 'createdDate', header: 'Created Date'}
         ];
     }
 
