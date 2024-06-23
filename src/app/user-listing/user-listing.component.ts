@@ -30,8 +30,8 @@ export class UserListingComponent {
             { field: 'code', header: 'Code' },
             { field: 'name', header: 'Name' },
             { field: 'category', header: 'Category' },
-            { field: 'quantity', header: 'Quantity' },
-            {field: '', header: 'Status'}
+            { field: 'quantity', header: 'Quantity' }
+            // { field: '', header: 'Status'}
         ];
     }
 
