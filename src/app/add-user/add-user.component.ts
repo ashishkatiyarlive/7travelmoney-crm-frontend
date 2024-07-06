@@ -38,29 +38,23 @@ export class AddUserComponent implements OnInit {
 
   submitUserForm(){
     this.submitted = true;
-    const adduserpayload = {
-      username: this.addUser.controls['userName'].value,
-      email: this.addUser.controls['email'].value,
-      Password: this.addUser.controls['password'].value,
-      phone: this.addUser.controls['mobile'].value,
-      status: 'Active',
-      date: new Date()
-
-    }
-    const postDataObject = {
-        "name": adduserpayload.username,
-        "email": adduserpayload.email,
-        "password": adduserpayload.Password,
-        "phone": parseInt(adduserpayload.phone),
+    const payload = {
+        "name": this.addUser.controls['userName'].value,
+        "email": this.addUser.controls['email'].value,
+        "password": this.addUser.controls['email'].value,
+        "phone": parseInt(this.addUser.controls['mobile'].value),
+        "city": this.addUser.controls['city'].value,
+        "state": this.addUser.controls['state'].value,
+        "address": this.addUser.controls['address'].value,
         "status": true,
         "created_at": new Date()
     }
-    this.userService.postData(postDataObject)
+    this.userService.postData(payload)
       .subscribe(success => {
         if (success) {
           // Navigate to home page or perform desired actions on successful login
           this.showSuccess();
-          debugger;
+        //  debugger;
           this.addUser.reset();
         } else {
           // Handle login failure
