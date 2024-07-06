@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { UserService } from '../services/user.service';
 import { DatePipe } from '@angular/common';
 import { findIndex } from 'rxjs';
+import { Router } from '@angular/router';
 
 interface Column {
     field: string;
@@ -19,7 +20,7 @@ export class UserListingComponent {
     users!: any;
     cols!: Column[];
 
-    constructor(private userService: UserService, private datePipe: DatePipe) {}
+    constructor(private userService: UserService, private datePipe: DatePipe, private router: Router) {}
 
     ngOnInit() {
         this.userService.getUsers().subscribe(data => {
@@ -39,6 +40,9 @@ export class UserListingComponent {
             {field: 'status', header: 'Status'},
             {field: 'createdDate', header: 'Created Date'}
         ];
+    }
+    addUser(){
+      this.router.navigate(['/add-user']);
     }
 
 }

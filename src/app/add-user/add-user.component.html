@@ -1,3 +1,4 @@
+
 <div class="container-fluid">
 <app-header></app-header>
 <div class="row mt-4">
@@ -5,6 +6,7 @@
         <h4 class="bg-light px-3 py-2 fw-normal">Add User</h4>
     </div>
 </div>
+<p-toast></p-toast>
 <div class="row">
 <div class="col-12 p-4">
 <form class="card p-4" [formGroup]="addUser" (ngSubmit)="submitUserForm()" >
@@ -68,7 +70,7 @@
        <div class="row g-6 my-4">
          <div class="col text-center"> 
             <button type="submit" class="btn btn-primary me-2">submit</button>
-            <button type="button" class="btn btn-secondary">Reset</button>
+            <button type="button" (click)="showSuccess()" class="btn btn-secondary">Reset</button>
          </div>
        </div>
 </form>

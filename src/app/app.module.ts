@@ -16,6 +16,7 @@ import { UserListingComponent } from './user-listing/user-listing.component';
 import { ProductService } from './services/productservice';
 import { NewProductService } from './services/newProductservice';
 import { UserService } from './services/user.service';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations'
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { UserService } from './services/user.service';
     CommonModule,
     ReactiveFormsModule,
     FormsModule,
-    SharedModule
+    SharedModule,
+    BrowserAnimationsModule
   ],
   providers: [ProductService, NewProductService, UserService],
   bootstrap: [AppComponent]

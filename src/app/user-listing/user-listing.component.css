@@ -1,0 +1,11 @@
+.add-user{
+    float: right;
+    font-size: 1rem;
+    display: inline-flex;
+    align-items: center;
+    height: 30px;
+    cursor: pointer;
+}
+.add-user-icon{
+    margin-right: 5px
+}
