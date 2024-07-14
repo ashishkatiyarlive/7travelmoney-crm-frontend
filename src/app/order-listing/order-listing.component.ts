@@ -26,11 +26,11 @@ export class OrderListingComponent {
         this.orderService.getOrders().subscribe(data => {
             if (data) {
                 data.map((value: any) => {
-                    value.currencyName = value.currencies.name;
-                    value.userName = value.user.name;
+                    value.currencyName = value.currencies?.name;
+                    value.userName = value.user?.name;
                     value.rates = `₹${value.rate}`;
                     value.totalAmount = `₹${value.total_amount}`;
-                    value.quantityWithSymbol = value.currencies.symbol + value.quantity;
+                    value.quantityWithSymbol = value.currencies?.symbol + value.quantity;
                     value.bookingDate = this.datePipe.transform(value.booking_date, 'dd/MM/yyyy, HH:MM');
                     value.expiryDate = this.datePipe.transform(value.expiry_date, 'dd/MM/yyyy, HH:MM');
                     if(value.status === 1) {
