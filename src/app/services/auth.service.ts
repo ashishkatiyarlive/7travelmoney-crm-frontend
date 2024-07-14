@@ -24,7 +24,7 @@ export class AuthService {
         tap(response => {
           // Assuming your API returns a token upon successful login
           this.token = response.token;
-          localStorage.setItem('currentUser', JSON.stringify({ email, token: this.token }));
+          localStorage.setItem('currentUser', JSON.stringify({ email, role: response.role, token: this.token }));
         }),
         catchError(error => {
           console.error('Error logging in', error);

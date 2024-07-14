@@ -16,10 +16,13 @@ export class CurrencyListingComponent {
   currencies!: any;
 
     cols!: Column[];
+    userData: any;
 
     constructor(private currencyService: CurrencyService, private datePipe: DatePipe) {}
 
     ngOnInit() {
+      let data: any = localStorage.getItem('currentUser');
+      this.userData = JSON.parse(data);
         this.currencyService.getCurrencies().subscribe(data => {
             if (data) {
                 data.map((value: any) => {
@@ -30,13 +33,23 @@ export class CurrencyListingComponent {
             }
           });
 
-        this.cols = [
-            { field: 'symbol', header: 'Symbol' },
-            { field: 'name', header: 'Name' },
-            { field: 'rate', header: 'Buy Rate' },
-            { field: 'status', header: 'Status' },
-            { field: 'updatedDate', header: 'Updated Date' }
-        ];
+         
+          if(this.userData.role === 'Admin') {
+            this.cols = [
+                { field: 'symbol', header: 'Symbol' },
+                { field: 'name', header: 'Name' },
+                { field: 'rate', header: 'Buy Rate' },
+                { field: 'status', header: 'Status' },
+                { field: 'updatedDate', header: 'Updated Date' }
+            ];
+          } else {
+            this.cols = [
+              { field: 'symbol', header: 'Symbol' },
+              { field: 'name', header: 'Name' },
+              { field: 'rate', header: 'Buy Rate' },
+              { field: 'updatedDate', header: 'Updated Date' }
+            ];
+          }
     }
     
 
