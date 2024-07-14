@@ -11,6 +11,7 @@
         <p-table [columns]="cols" [value]="currencies">
             <ng-template pTemplate="header" let-columns>
                 <tr>
+                    <th>S.No.</th>
                     <th *ngFor="let col of columns">
                         {{ col.header }}
                     </th>
@@ -19,11 +20,13 @@
                     </th>
                 </tr>
             </ng-template>
-            <ng-template pTemplate="body" let-rowData let-columns="columns">
+            <ng-template pTemplate="body" let-rowData let-i="rowIndex" let-columns="columns">
                 <tr>
+                    <td>{{i+1}}</td>
                     <td *ngFor="let col of columns">
                         {{ rowData[col.field] }}
                     </td>
+                    
                     <td>
                         @if(userData.role == 'Admin') {
                             <span class="mx-4 d-inline-block">
