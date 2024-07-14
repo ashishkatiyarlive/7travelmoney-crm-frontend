@@ -2,6 +2,7 @@
 @import "primeng/resources/themes/lara-light-blue/theme.css";
 @import "primeng/resources/primeng.css";
 @import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
+@import "primeicons/primeicons.css";
 
 :root {
   font-synthesis: none;
@@ -11,4 +12,8 @@
 }
 .nav-link-header{
   color:#03045E !important;
+}
+.p-message-close{
+  position: absolute;
+  right: 2rem;
 }

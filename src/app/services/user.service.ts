@@ -43,9 +43,10 @@ export class UserService {
     return this.http.get<any>(`${this.apiUrl}/users/me`, { headers });
   }
 
-  deleteUser(Id:number) : Observable<any> {
+  deleteUser(Id:number, status: boolean) : Observable<any> {
     const headers = this.authService.getAuthorizationHeader();
-    return this.http.post<any>(`${this.apiUrl}/users/`, `${Id}`, { headers });
+    const payload = {'status': status};
+    return this.http.patch<any>(`${this.apiUrl}/users/${Id}`, payload, { headers });
   }
 
   getUsers() {
