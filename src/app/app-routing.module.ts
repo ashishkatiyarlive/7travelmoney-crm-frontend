@@ -12,8 +12,8 @@ const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'dashboard', component: UserDashboardComponent},
   {path:'user-listing', component: UserListingComponent},
-  {path: 'currency-listing', component: CurrencyListingComponent},
-  {path: 'order-listing', component: OrderListingComponent},
+  {path: 'best-buy', component: CurrencyListingComponent},
+  {path: 'booked-currency', component: OrderListingComponent},
   {path: 'add-user', component: AddUserComponent}
 ];
 

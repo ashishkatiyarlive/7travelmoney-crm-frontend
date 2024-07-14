@@ -35,10 +35,16 @@ export class LoginComponent implements OnInit {
   }
  
   login(){
-    this.router.navigate(['/dashboard']);
+    let userData: any = localStorage.getItem('currentUser');
+    userData = JSON.parse(userData);
+    if(userData.role === 'Admin')
+      this.router.navigate(['/dashboard']);
+    else
+      this.router.navigate(['/best-buy']);
   }
 
   onLogout(): void {
+    localStorage.clear();
     this.authService.logout();
     // Perform additional logout actions (e.g., navigate to login page)
     console.log('Logged out');

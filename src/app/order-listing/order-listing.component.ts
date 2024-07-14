@@ -16,10 +16,13 @@ export class OrderListingComponent {
 
     orders!: any;
     cols!: Column[];
+    userData: any;
 
     constructor(private orderService: OrderService, private datePipe: DatePipe) { }
 
     ngOnInit() {
+        let data: any = localStorage.getItem('currentUser');
+        this.userData = JSON.parse(data);
         this.orderService.getOrders().subscribe(data => {
             if (data) {
                 data.map((value: any) => {
@@ -43,16 +46,28 @@ export class OrderListingComponent {
             }
         });
 
-        this.cols = [
-            { field: 'userName', header: 'User' },
-            { field: 'currencyName', header: 'Currency' },
-            { field: 'quantityWithSymbol', header: 'Quantity' },
-            { field: 'rates', header: 'Buy Rate' },
-            { field: 'totalAmount', header: 'Total Amount' },
-            { field: 'bookingDate', header: 'Booking Date' },
-            { field: 'expiryDate', header: 'Expiry Date' },
-            { field: 'statusName', header: 'Status' }
-        ];
+        if(this.userData.role === 'Admin') {
+            this.cols = [
+                { field: 'userName', header: 'User' },
+                { field: 'currencyName', header: 'Currency' },
+                { field: 'quantityWithSymbol', header: 'Quantity' },
+                { field: 'rates', header: 'Buy Rate' },
+                { field: 'totalAmount', header: 'Total Amount' },
+                { field: 'bookingDate', header: 'Booking Date' },
+                { field: 'expiryDate', header: 'Expiry Date' },
+                { field: 'statusName', header: 'Status' }
+            ];
+        } else {
+            this.cols = [
+                { field: 'currencyName', header: 'Currency' },
+                { field: 'quantityWithSymbol', header: 'Quantity' },
+                { field: 'rates', header: 'Buy Rate' },
+                { field: 'totalAmount', header: 'Total Amount' },
+                { field: 'bookingDate', header: 'Booking Date' },
+                { field: 'expiryDate', header: 'Expiry Date' },
+                { field: 'statusName', header: 'Status' }
+            ];
+        }
     }
 
 }
