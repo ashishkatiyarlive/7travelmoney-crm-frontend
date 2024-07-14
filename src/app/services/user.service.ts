@@ -54,4 +54,14 @@ export class UserService {
     return this.http.get<any>(`${this.apiUrl}/users`, { headers });
   }
 
+  editUser(Id:number, payload: any) : Observable<any> {
+    const headers = this.authService.getAuthorizationHeader();
+    //const payload = {body};
+    return this.http.put<any>(`${this.apiUrl}/users/${Id}`, payload, { headers });
+  }
+  getUserById(Id:number) {
+    const headers = this.authService.getAuthorizationHeader();
+    return this.http.get<any>(`${this.apiUrl}/users/${Id}`, { headers });
+  }
+
 }

@@ -67,7 +67,7 @@ export class UserListingComponent {
     }
     editUser(data: any){
       const userId = data.id;
-      console.log(data)
+      this.router.navigate(['/add-user', userId ]);
 
     }
     deleteUser(data: any){
