@@ -12,6 +12,7 @@ import { OrderListingComponent } from './order-listing/order-listing.component';
 import { CurrencyListingComponent } from './currency-listing/currency-listing.component';
 import { UserDashboardComponent } from './user-dashboard/user-dashboard.component';
 import { UserListingComponent } from './user-listing/user-listing.component';
+import { AddCurrencyComponent } from './add-currency/add-currency.component';
 // import { UserListingService } from './user-listing/user-listing.service';
 import { ProductService } from './services/productservice';
 import { NewProductService } from './services/newProductservice';
@@ -26,7 +27,8 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations'
     OrderListingComponent,
     CurrencyListingComponent,
     UserDashboardComponent,
-    UserListingComponent
+    UserListingComponent,
+    AddCurrencyComponent
   ],
   imports: [
     BrowserModule,
