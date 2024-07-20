@@ -6,6 +6,7 @@ import { UserListingComponent } from './user-listing/user-listing.component';
 import { CurrencyListingComponent } from './currency-listing/currency-listing.component';
 import { OrderListingComponent } from './order-listing/order-listing.component';
 import { AddUserComponent } from './add-user/add-user.component';
+import { AddCurrencyComponent } from './add-currency/add-currency.component';
 
 const routes: Routes = [
   {path:'', pathMatch: 'full', redirectTo: 'login'},
@@ -15,7 +16,9 @@ const routes: Routes = [
   {path: 'best-buy', component: CurrencyListingComponent},
   {path: 'booked-currency', component: OrderListingComponent},
   {path: 'add-user', component: AddUserComponent},
-  {path: 'add-user/:id', component: AddUserComponent}
+  {path: 'add-currency', component: AddCurrencyComponent},
+  {path: 'add-user/:id', component: AddUserComponent},
+  {path: 'add-currency/:id', component: AddCurrencyComponent}
 ];
 
 @NgModule({
