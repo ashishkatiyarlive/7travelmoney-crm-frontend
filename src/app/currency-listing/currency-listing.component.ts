@@ -3,6 +3,8 @@ import { CurrencyService } from '../services/currency.service';
 import { DatePipe } from '@angular/common';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { BookedCurrencyDialogComponent } from '../booked-currency-dialog/booked-currency-dialog.component';
 
 interface Column {
     field: string;
@@ -12,7 +14,8 @@ interface Column {
 @Component({
   selector: 'app-currency-listing',
   templateUrl: './currency-listing.component.html',
-  styleUrl: './currency-listing.component.css'
+  styleUrl: './currency-listing.component.css',
+  providers: [DialogService]
 })
 export class CurrencyListingComponent implements OnInit, OnDestroy {
   currencies!: any;
@@ -22,7 +25,8 @@ export class CurrencyListingComponent implements OnInit, OnDestroy {
 
     currrencySubscription:Subscription = new Subscription()
 
-    constructor(private currencyService: CurrencyService, private datePipe: DatePipe, private router: Router) {}
+    constructor(private currencyService: CurrencyService, 
+      private datePipe: DatePipe, private router: Router, private dialogService: DialogService) {}
 
     ngOnInit() {
       let data: any = localStorage.getItem('currentUser');
@@ -64,6 +68,23 @@ export class CurrencyListingComponent implements OnInit, OnDestroy {
       const currencyId = data.id;
       this.router.navigate(['/add-currency', currencyId ]);
 
+    }
+
+    bookedCurrency(data: any) {
+      const ref: DynamicDialogRef  = this.dialogService.open(BookedCurrencyDialogComponent, {
+        header: 'Book your currency',
+        width: '70%',
+        data: data
+      });
+      ref.onClose.subscribe((submittedData: any) => {
+        if (submittedData) {
+          console.log('Data returned from dialog:', submittedData);
+          // Handle returned data here
+          this.router.navigate(['/booked-currency']);
+        } else {
+          console.log('close dialog');
+        }
+      });
     }
   
     ngOnDestroy(): void {

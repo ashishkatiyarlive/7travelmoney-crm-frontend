@@ -17,4 +17,14 @@ export class OrderService {
     const headers = this.authService.getAuthorizationHeader();
     return this.http.get<any>(`${this.apiUrl}/orders`, { headers });
   }
+
+  bookedCurrency(payload: any) {
+    const headers = this.authService.getAuthorizationHeader();
+    return this.http.post<any>(`${this.apiUrl}/orders`, payload, { headers });
+  }
+
+  updateBookedCurrency(id: any, payload: any) {
+    const headers = this.authService.getAuthorizationHeader();
+    return this.http.patch<any>(`${this.apiUrl}/orders/${id}`, payload, { headers });
+  }
 }

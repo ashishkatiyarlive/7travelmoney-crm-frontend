@@ -1,0 +1,71 @@
+<div class="row">
+    <div class="col-12 p-4">
+        <h5>User Info# </h5>
+        <div class="row g-6" style="padding-left: 50px;">
+            <div class="col-md-6 col-xs-12 mb-2">
+                <label class="form-label"><b> Name :</b></label> {{formData.user.name}}
+            </div>
+            <div class="col-md-6 col-xs-12 mb-2">
+                <label class="form-label"><b> Email :</b></label> {{formData.user.email}}
+            </div>
+        </div>
+        <div class="row g-6" style="padding-left: 50px;">
+            <div class="col-md-6 col-xs-12 mb-2">
+                <label class="form-label"><b> Phone :</b></label> {{formData.user.phone}}
+            </div>
+            <div class="col-md-6 col-xs-12 mb-2">
+                <label class="form-label"><b> Address :</b></label> {{formData.user.address}}
+            </div>
+        </div>
+        <div class="row g-6" style="padding-left: 50px;">
+            <div class="col-md-6 col-xs-12 mb-2">
+                <label class="form-label"><b> City :</b></label> {{formData.user.city}}
+            </div>
+            <div class="col-md-6 col-xs-12 mb-2">
+                <label class="form-label"><b> State :</b></label> {{formData.user.state}}
+            </div>
+        </div>
+    
+        <h5>Order Info# </h5>
+        <div class="row g-6" style="padding-left: 50px;">
+            <div class="col-md-6 col-xs-12 mb-2">
+                <label class="form-label"><b> Order Id :</b></label> {{formData.id}}
+            </div>
+            <div class="col-md-6 col-xs-12 mb-2">
+                <label class="form-label"><b> Booking Date :</b></label> {{formData.bookingDate}}
+            </div>
+        </div>
+            <div class="row g-6" style="padding-left: 50px;">
+                <div class="col-md-6 col-xs-12 mb-2">
+                    <label class="form-label"><b> Currency Name :</b></label> {{formData.currencyName}}
+                </div>
+                <div class="col-md-6 col-xs-12 mb-2">
+                    <label class="form-label"><b> Currency Rate :</b></label> {{formData.rate}}
+                </div>
+            </div>
+            <div class="row g-6" style="padding-left: 50px;">
+                <div class="col-md-6 col-xs-12 mb-2">
+                    <label class="form-label"><b> Quantity :</b></label> {{formData.quantity}}
+                </div>
+                <div class="col-md-6 col-xs-12 mb-2">
+                    <label class="form-label"><b> Total Amount :</b></label> {{formData.total_amount}}
+                </div>
+            </div>
+            <div class="row g-6" style="padding-left: 50px;">
+                <div class="col-md-6 col-xs-12 mb-2">
+                    <label class="form-label"><b> Status : </b></label> 
+                    @if (formData.status === 1) {
+                        <span> In-Progress</span>
+                    } @else if (formData.status === 2) {
+                        <span> Hold</span>
+                    } @else {
+                        <span> Completed</span>
+                    }
+                </div>
+                <div class="col-md-6 col-xs-12 mb-2">
+                    <label class="form-label"><b> Updated Date :</b></label> {{formData.updated_at}}
+                </div>
+            </div>
+        </div>
+    </div>
+

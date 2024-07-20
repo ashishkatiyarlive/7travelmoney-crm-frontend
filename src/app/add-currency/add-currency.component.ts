@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validator, Validators } from '@angular/forms';
-import {MessageService} from 'primeng/api';
-import { PrimeNGConfig } from 'primeng/api';
+import { PrimeNGConfig, MessageService } from 'primeng/api';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CurrencyService } from '../services/currency.service';
 
@@ -66,7 +65,8 @@ export class AddCurrencyComponent {
         "rate": parseInt(this.AddCurrency.controls['currenntRate'].value),
         "status": true,
         "priority": 0,
-        "created_at": new Date()
+        "created_at": new Date(),
+        "updated_at": new Date()
     }
     const editpayload = {
       "name": this.AddCurrency.controls['currencyName'].value,
