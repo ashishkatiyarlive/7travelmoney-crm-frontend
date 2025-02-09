@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  base_url: 'http://localhost:3000'
+  base_url: 'https://apicrm.7travelmoney.com',
+  base_url_travel: 'http://localhost:3000'
 };
 
 /*

@@ -37,8 +37,10 @@ export class LoginComponent implements OnInit {
   login(){
     let userData: any = localStorage.getItem('currentUser');
     userData = JSON.parse(userData);
-    if(userData.role === 'Admin')
+    if(userData.role === 'AdminCRM')
       this.router.navigate(['/dashboard']);
+    else if(userData.role === 'Admin')
+      this.router.navigate(['/travel-money']);
     else
       this.router.navigate(['/best-buy']);
   }

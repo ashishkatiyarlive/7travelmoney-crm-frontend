@@ -3,7 +3,7 @@
     <div class="row mt-4">
         <div class="col-12">
             <h4 class="bg-light px-3 py-2 fw-normal">Best Buy
-                @if(userData.role === 'Admin') {
+                @if(userData.role === 'AdminCRM') {
                 <span (click)="addCurrency()" class="add-user">
                     <i class="pi pi-plus px-2"></i> Add currency</span>
                 }
@@ -33,7 +33,7 @@
                             </td>
 
                             <td>
-                                @if(userData.role == 'Admin') {
+                                @if(userData.role == 'AdminCRM') {
                                 <span class="mx-4 d-inline-block" (click)="editCurrency(rowData)">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                         class="bi bi-pencil" viewBox="0 0 16 16">

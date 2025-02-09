@@ -12,13 +12,14 @@ const routes: Routes = [
   {path:'', pathMatch: 'full', redirectTo: 'login'},
   {path: 'login', component: LoginComponent},
   {path: 'dashboard', component: UserDashboardComponent},
-  {path:'user-listing', component: UserListingComponent},
+  {path: 'user-listing', component: UserListingComponent},
   {path: 'best-buy', component: CurrencyListingComponent},
   {path: 'booked-currency', component: OrderListingComponent},
   {path: 'add-user', component: AddUserComponent},
   {path: 'add-currency', component: AddCurrencyComponent},
   {path: 'add-user/:id', component: AddUserComponent},
-  {path: 'add-currency/:id', component: AddCurrencyComponent}
+  {path: 'add-currency/:id', component: AddCurrencyComponent},
+  { path: 'travel-money', loadChildren: () => import('./travel-money/travel-money.module').then(m => m.TravelMoneyModule) }
 ];
 
 @NgModule({

@@ -27,4 +27,5 @@ export class OrderService {
     const headers = this.authService.getAuthorizationHeader();
     return this.http.patch<any>(`${this.apiUrl}/orders/${id}`, payload, { headers });
   }
+  
 }

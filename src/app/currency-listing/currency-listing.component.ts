@@ -43,7 +43,7 @@ export class CurrencyListingComponent implements OnInit, OnDestroy {
           });
 
          
-          if(this.userData.role === 'Admin') {
+          if(this.userData.role === 'AdminCRM') {
             this.cols = [
                 { field: 'symbol', header: 'Currency Symbol' },
                 { field: 'name', header: 'Currency Name' },

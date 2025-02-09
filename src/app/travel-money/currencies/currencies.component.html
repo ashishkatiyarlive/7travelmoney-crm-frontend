@@ -1,0 +1,76 @@
+<div class="container-fluid">
+  <app-header></app-header>
+  <div class="row mt-4">
+      <div class="col-12">
+          <h4 class="bg-light px-3 py-2 fw-normal">Currencies
+            <div class="btn cursur-pointer updateCurrencies" title="View" (click)="updateCurrencies()">Update Currencies</div>
+          </h4>
+          
+      </div>
+  </div>
+  <div class="row">
+      <div class="col-12">
+          <div class="card">
+              <p-table [columns]="cols" [value]="orders" #dt1 dataKey="id"
+              [rows]="10"
+              [rowsPerPageOptions]="[10, 25, 50]"
+              [paginator]="true"
+              [globalFilterFields]="['name', 'symbol', 'rate', 'buy_rate', 'sell_rate']">
+              <ng-template #caption>
+                <div class="flex">
+                    <p-button label="Clear" [outlined]="true" icon="pi pi-filter-slash" (click)="clear(dt1)" />
+                    <p-iconfield iconPosition="left" class="ml-auto">
+                        <p-inputicon>
+                            <i class="pi pi-search"></i>
+                        </p-inputicon>
+                        <input pInputText type="text" (input)="dt2.filterGlobal($event.target, 'contains')" placeholder="Search keyword" />
+                    </p-iconfield>
+                </div>
+            </ng-template>
+                  <ng-template pTemplate="header" let-columns>
+                      <tr>
+                          <th *ngFor="let col of columns">
+                              {{ col.header }}
+                              <p-columnFilter type="text" field="['name', 'symbol', 'rate', 'buy_rate', 'sell_rate']" display="menu" />
+                          </th>
+                          <th>
+                              Actions
+                          </th>
+                      </tr>
+                      
+                  </ng-template>
+                  <ng-template pTemplate="body" let-rowData let-columns="columns">
+                      <tr>
+                          <td *ngFor="let col of columns">
+                              {{ rowData[col.field] }}
+                          </td>
+                          <td>
+                              <span class="mx-4 d-inline-block cursur-pointer" title="Edit" (click)="editOrder(rowData)">
+                                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                      class="bi bi-pencil" viewBox="0 0 16 16">
+                                      <path
+                                          d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325" />
+                                  </svg>
+                              </span>
+                              <span class="d-inline-block cursur-pointer" title="View" (click)="viewOrder(rowData)">
+                                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
+                                      <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0"/>
+                                      <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8m8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7"/>
+                                    </svg>
+                                  </span>
+                              <!-- <span class="d-inline-block">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16" title="View">
+                                  <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0"/>
+                                  <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8m8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7"/>
+                                </svg>
+                              </span> -->
+                          </td>
+                      </tr>
+                  </ng-template>
+              </p-table>
+          </div>
+      </div>
+  </div>
+
+  <app-footer></app-footer>
+</div>

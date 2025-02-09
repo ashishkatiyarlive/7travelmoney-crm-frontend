@@ -29,7 +29,7 @@ export class OrderListingComponent {
         let data: any = localStorage.getItem('currentUser');
         this.userData = JSON.parse(data);
         this.getOrders();
-        if (this.userData.role === 'Admin') {
+        if (this.userData.role === 'AdminCRM') {
             this.cols = [
                 { field: 'userName', header: 'User' },
                 { field: 'currencyName', header: 'Currency' },
