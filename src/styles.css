@@ -10,6 +10,9 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+table{
+  font-size: 80%;
+}
 .nav-link-header{
   color:#03045E !important;
 }
