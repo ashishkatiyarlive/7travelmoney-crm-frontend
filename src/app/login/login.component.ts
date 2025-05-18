@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-//import Validation from './utils/validation';
+import { FormBuilder } from '@angular/forms';
+import { Router } from '@angular/router';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -8,42 +9,50 @@ import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  // loginForm!: FormGroup;
-
-  constructor(private formBuilder: FormBuilder) {
-    
+  email: string = '';
+  password: string = '';
+  loginError: boolean = false;
+  constructor(private formBuilder: FormBuilder,
+     private router: Router, 
+     private authService: AuthService) {
   }
-  // ngOnInit(){
-  //   this.loginForm = this.formBuilder.group({
-  //     email: ['', [Validators.required, Validators.email]],
-  //     password: ['', Validators.required]
-  //   });
-  // }
-
-  onSubmit() {
-    if (this.loginForm.valid) {
-      // console.log('Form Submitted!');
-      // console.log('Email:', this.loginForm.value.email);
-      // console.log('Password:', this.loginForm.value.password);
-      // You can add your authentication logic here
-    } else {
-      console.error('Form is invalid');
-    }
-  }
-
-  loginForm: FormGroup = new FormGroup({
-    email: new FormControl(''),
-    password: new FormControl(''),
-  });
-  touched = false;
 
   ngOnInit(): void{
-    this.loginForm = this.formBuilder.group({
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', Validators.required]
-    });
   }
-  get f(): { [key: string]: AbstractControl } {
-    return this.loginForm.controls;
+
+  onLogin(): void {
+      this.authService.login(this.email, this.password)
+      .subscribe(success => {
+        if (success) {
+          // Navigate to home page or perform desired actions on successful login
+          console.log('Login successful');
+          this.login();
+        } else {
+          // Handle login failure
+          this.loginError = true;
+        }
+      });
+  }
+ 
+  login(){
+    let userData: any = localStorage.getItem('currentUser');
+    userData = JSON.parse(userData);
+    if(userData.role === 'AdminCRM')
+      this.router.navigate(['/dashboard']);
+    else if(userData.role === 'Admin')
+      this.router.navigate(['/travel-money']);
+    else
+      this.router.navigate(['/best-buy']);
+  }
+
+  onLogout(): void {
+    localStorage.clear();
+    this.authService.logout();
+    // Perform additional logout actions (e.g., navigate to login page)
+    console.log('Logged out');
+  }
+
+  isLoggedIn(): boolean {
+    return this.authService.isLoggedIn();
   }
 }

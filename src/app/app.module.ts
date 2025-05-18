@@ -6,20 +6,40 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { SharedModule } from './shared/shared.module';
+import { AddUserComponent } from './add-user/add-user.component';
+import { OrderListingComponent } from './order-listing/order-listing.component';
+import { CurrencyListingComponent } from './currency-listing/currency-listing.component';
+import { UserDashboardComponent } from './user-dashboard/user-dashboard.component';
+import { UserListingComponent } from './user-listing/user-listing.component';
+import { AddCurrencyComponent } from './add-currency/add-currency.component';
+// import { UserListingService } from './user-listing/user-listing.service';
+import { ProductService } from './services/productservice';
+import { NewProductService } from './services/newProductservice';
+import { UserService } from './services/user.service';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations'
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent
+    LoginComponent,
+    AddUserComponent,
+    OrderListingComponent,
+    CurrencyListingComponent,
+    UserDashboardComponent,
+    UserListingComponent,
+    AddCurrencyComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     CommonModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    SharedModule,
+    BrowserAnimationsModule
   ],
-  providers: [],
+  providers: [ProductService, NewProductService, UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

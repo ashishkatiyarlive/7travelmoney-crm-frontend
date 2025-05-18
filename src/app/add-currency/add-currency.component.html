@@ -1,0 +1,50 @@
+
+<div class="container-fluid">
+    <app-header></app-header>
+    <div class="row mt-4">
+        <div class="col-12">
+            <h4 class="bg-light px-3 py-2 fw-normal">Add Currency</h4>
+        </div>
+    </div>
+    <p-toast></p-toast>
+    <div class="row">
+    <div class="col-12 p-4">
+    <form class="card p-4" [formGroup]="AddCurrency" (ngSubmit)="submitUserForm()" >
+        <div class="row g-6">
+            <div class="col-md-6 col-xs-12 mb-2">
+              <label class="form-label"> Currency Name</label>
+              <input type="text" class="form-control" formControlName="currencyName" maxlength="50" placeholder="Currency Name" aria-label="Currency name">
+              <span *ngIf="(this.currencyData['currencyName'].touched || submitted) && this.currencyData['currencyName'].errors?.['required']" class="error">
+                Currency Name is required.
+              </span>
+            </div>
+            <div class="col-md-6 col-xs-12 mb-2">
+                <label class="form-label">Currency Symbol</label>
+              <input type="text" class="form-control" maxlength="30" formControlName="currencySymbol" placeholder="Currency Symbol" aria-label="Currency Symbol">
+              <span *ngIf="(this.currencyData['currencySymbol'].touched || submitted) && this.currencyData['currencySymbol'].errors?.['required']" class="error">
+                Currency Symbol is required.
+              </span>
+            </div>
+          </div>
+          <div class="row g-6">
+            <div class="col-md-6 col-xs-12 mb-2">
+                <label class="form-label">Currennt rate</label>
+                <input type="tel" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" class="form-control" maxlength="10" formControlName="currenntRate" placeholder="Currennt Rate" aria-label="Currennt Rate">
+                <span *ngIf="(this.currencyData['currenntRate'].touched || submitted) && this.currencyData['currenntRate'].errors?.['required']" class="error">
+                    Currency rate is required.
+                </span>
+            </div> 
+           </div>
+
+           <div class="row g-6 my-4">
+             <div class="col text-center"> 
+                <button type="submit" class="btn btn-primary me-2">submit</button>
+                <button type="button" (click)="resetCurrency()" class="btn btn-secondary">Reset</button>
+             </div>
+           </div>
+    </form>
+    </div>
+    </div>
+    <app-footer></app-footer>
+    </div>
+    

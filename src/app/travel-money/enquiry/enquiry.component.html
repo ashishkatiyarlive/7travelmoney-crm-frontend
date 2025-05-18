@@ -1,0 +1,86 @@
+<div class="container-fluid">
+    <app-header></app-header>
+  
+    <div class="row mt-4">
+      <div class="col-12">
+        <h4 class="bg-light px-3 py-2 fw-normal">Booked Currency</h4>
+      </div>
+    </div>
+  
+    <!-- Global Search -->
+    <div class="row mt-3">
+      <div class="col-12">
+        <input
+          type="text"
+          pInputText
+          placeholder="Global Search"
+          (input)="onGlobalFilter($event, table)"
+          class="mb-3 w-100"
+        />
+      </div>
+    </div>
+  
+    <!-- Table -->
+    <div class="row">
+      <div class="col-12">
+        <div class="card">
+          <p-table
+            #table
+            [value]="orders"
+            [columns]="cols"
+            [paginator]="true"
+            [rows]="5"
+            [rowsPerPageOptions]="[5, 10, 20, 30]"
+            [globalFilterFields]="globalFilterFields"
+            filterDisplay="menu"
+            responsiveLayout="scroll"
+          >
+            <!-- Header -->
+            <ng-template pTemplate="header" let-columns>
+              <tr>
+                <th *ngFor="let col of columns" [pSortableColumn]="col.field">
+                  {{ col.header }}
+                  <p-sortIcon [field]="col.field"></p-sortIcon>
+                  <p-columnFilter
+                    [field]="col.field"
+                    [showMatchModes]="true"
+                    [showOperator]="false"
+                    display="menu"
+                  ></p-columnFilter>
+                </th>
+                <th>Actions</th>
+              </tr>
+            </ng-template>
+  
+            <!-- Body -->
+            <ng-template pTemplate="body" let-rowData let-columns="columns">
+              <tr>
+                <td *ngFor="let col of columns">
+                  {{ rowData[col.field] }}
+                </td>
+                <td>
+                  <span
+                    class="mx-2 d-inline-block cursor-pointer"
+                    title="Edit"
+                    (click)="editOrder(rowData)"
+                  >
+                    <i class="pi pi-pencil"></i>
+                  </span>
+                  <span
+                    class="d-inline-block cursor-pointer"
+                    title="View"
+                    (click)="viewOrder(rowData)"
+                  >
+                    <i class="pi pi-eye"></i>
+                  </span>
+                </td>
+              </tr>
+            </ng-template>
+          </p-table>
+        </div>
+      </div>
+    </div>
+  
+    <app-footer></app-footer>
+  </div>
+  
